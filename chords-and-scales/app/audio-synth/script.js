@@ -29,7 +29,11 @@ function changeVolume(event) {
 
 function setWaveform(event) {
   // waveform selected from DOM to be set in oscillator
-  waveforms.forEach((waveform) => waveform.checked ? selectedWaveform = waveform : null)
+  waveforms.forEach((waveform) => {
+    if (waveform.checked) {
+      selectedWaveform = waveform
+    }
+  })
 }
 
 volumeCtrl.addEventListener('input', changeVolume)
@@ -37,7 +41,7 @@ volumeCtrl.addEventListener('input', changeVolume)
 startBtn.addEventListener('click', function(event) {
   oscillator = context.createOscillator()
   // setValueAtTime allows to set the frequency in Hz and start delay
-  oscillator.frequency.setValueAtTime(120, 0)
+  oscillator.frequency.setValueAtTime(260, 0)
   oscillator.connect(masterVolume)
 
   oscillator.start(0)
@@ -45,7 +49,7 @@ startBtn.addEventListener('click', function(event) {
 })
 
 stopBtn.addEventListener('click', function(event) {
-  oscillator.stop(0)
+  oscillator.stop(1)
   delete oscillator
 })
 
