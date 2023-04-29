@@ -17,7 +17,7 @@ console.log(['Audio Context Instance: ', context])
 const masterVolume = context.createGain()
 masterVolume.connect(context.destination)
 // starting volume
-masterVolume.gain.value = .1
+masterVolume.gain.value = .4
 
 let oscillator
 
@@ -31,14 +31,14 @@ function setWaveform(event) {
   // waveform selected from DOM to be set in oscillator
   waveforms.forEach((waveform) => {
     if (waveform.checked) {
-      selectedWaveform = waveform
+      selectedWaveform = waveform.value
     }
   })
 }
 
 volumeCtrl.addEventListener('input', changeVolume)
 
-startBtn.addEventListener('click', function(event) {
+startBtn.addEventListener('mousedown', function(event) {
   oscillator = context.createOscillator()
   // setValueAtTime allows to set the frequency in Hz and start delay
   oscillator.frequency.setValueAtTime(260, 0)
@@ -48,16 +48,19 @@ startBtn.addEventListener('click', function(event) {
   oscillator.type = selectedWaveform
 })
 
-stopBtn.addEventListener('click', function(event) {
-  oscillator.stop(1)
+startBtn.addEventListener('mouseup', function(event) {
+  oscillator.stop(0)
   delete oscillator
 })
 
 // waveform selection not working
+console.log(['Waveforms out of listener: ', waveforms])
 waveforms.forEach((waveform) => {
-  console.log(['Current Waveform', waveform])
   waveform.addEventListener('change', function(event) {
+    console.log(['Current Waveform', waveform, `value: ${waveform.value}`])
     setWaveform(event)
-    oscillator.type = selectedWaveform
+    if (oscillator) {
+      oscillator.type = selectedWaveform
+    }
   })
 })
