@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Synthesizer</title>
+</head>
+<body>
+  <section>
+    <h1>Synth Controls</h1>
+    <button class="start">Start</button>
+    <button class="stop">Stop</button>
+    <input class="volume-ctrl" type="range" min="0" max="1" step="0.1" value="0.4">
+  </section>
+  <section>
+    <h1>Waveforms</h1>
+    <label for="sine-wave">
+      Sine:
+      <input type="radio" name="waveform" id="sine-wave" value="sine" checked>
+    </label>
+    <label for="saw-wave">
+      Saw:
+      <input type="radio" name="waveform" id="saw-wave" value="sawtooth">
+    </label>
+    <label for="triangle-wave">
+      Triangle:
+      <input type="radio" name="waveform" id="triangle-wave" value="triangle">
+    </label>
+    <label for="square-wave">
+      Square:
+      <input type="radio" name="waveform" id="square-wave" value="square">
+    </label>
+  </section>
+  <script src="./script.js"></script>
+</body>
+</html>
